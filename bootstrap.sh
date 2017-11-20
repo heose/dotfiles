@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 if test ! $(which brew); then
-    /usr/bin/ruby -e "$(curl -fsSLhttps://raw.githubusercontent.com/Homebrew/install/master/install)”
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 brew update
@@ -16,9 +16,9 @@ git config --global user.email goddnrl@gmail.com
 
 # Download dracula theme
 mkdir $HOME/.dracula-theme 
-cd $HOME/.dracula-theme
-git clone git clone https://github.com/dracula/zsh.git
-git clone https://github.com/dracula/iterm.git
-git clone https://github.com/dracula/jetbrains.git
+git clone https://github.com/dracula/zsh.git $HOME/.dracula-theme/zsh
+git clone https://github.com/dracula/iterm.git $HOME/.dracula-theme/iterm
+git clone https://github.com/dracula/jetbrains.git $HOME/.dracula-theme/jetbrains
 
+mkdir $HOME/.emacs.d
 ln -s $HOME/dotfiles/.emacs.d/init.el $HOME/.emacs.d/init.el
