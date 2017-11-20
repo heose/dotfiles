@@ -1,4 +1,3 @@
-
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -6,7 +5,15 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 (package-initialize)
 
-;맥일 경우 환경변수를 못 가져 오는 경우가 있어서 셋팅
+;; use-package 설치
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-verbose t)
+
+;; 맥일 경우 환경변수를 못 가져 오는 경우가 있어서 셋팅
 (use-package exec-path-from-shell
   :ensure t
   :config (when (eq system-type 'darwin));;맥일경우
