@@ -82,7 +82,6 @@
             (add-hook 'web-mode-hook (lambda () (setq web-mode-markup-indent-offset 2)))
             (add-hook 'web-mode-hook (lambda () (setq web-mode-enable-current-element-highlight t)))))
 
-
 (defun smart-open-line-above ()
   "Insert an empty line above the current line.
 Position the cursor at it's beginning, according to the current mode."
@@ -92,6 +91,13 @@ Position the cursor at it's beginning, according to the current mode."
   (forward-line -1)
   (indent-according-to-mode))
 
+;; Disable file~
+(setq backup-inhibited t)
+;; Disable #file#
+(setq auto-save-visited-file-name t)
+;; Set Auto save timeout
+(setq auto-save-timeout 2)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -100,7 +106,7 @@ Position the cursor at it's beginning, according to the current mode."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
+    (real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
