@@ -98,15 +98,23 @@ Position the cursor at it's beginning, according to the current mode."
 ;; Set Auto save timeout
 (setq auto-save-timeout 2)
 
+(setq global-linum-mode t)
+
+(use-package hlinum
+  :ensure t
+  :config (hlinum-activate))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(global-linum-mode t)
+ '(line-number-mode nil)
  '(package-selected-packages
    (quote
-    (real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
+    (hlinum real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
