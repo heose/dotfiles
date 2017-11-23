@@ -95,15 +95,15 @@ Position the cursor at it's beginning, according to the current mode."
 (setq backup-inhibited t)
 ;; Disable #file#
 (setq auto-save-visited-file-name t)
+;; Disable Interlocking
+(setq create-lockfiles nil)
 ;; Set Auto save timeout
 (setq auto-save-timeout 2)
 
 (setq global-linum-mode t)
-
 (use-package hlinum
   :ensure t
   :config (hlinum-activate))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
