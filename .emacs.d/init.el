@@ -82,6 +82,22 @@
             (add-hook 'web-mode-hook (lambda () (setq web-mode-markup-indent-offset 2)))
             (add-hook 'web-mode-hook (lambda () (setq web-mode-enable-current-element-highlight t)))))
 
+(use-package company
+  :ensure t
+  :init (global-company-mode)
+  :config (progn
+            (setq company-idle-delay 0.2)
+            (setq company-tooltip-limit 10)
+            (setq company-minimum-prefix-length 1)
+            (setq company-selection-wrap-around t)
+            (setq company-tooltip-align-annotations t)
+            (define-key company-active-map (kbd "C-n") 'company-select-next)
+            (define-key company-active-map (kbd "C-p") 'company-select-previous)
+            (define-key company-active-map (kbd "C-d") 'company-show-doc-buffer)))
+
+(use-package neotree
+  :ensure t)
+
 (defun smart-open-line-above ()
   "Insert an empty line above the current line.
 Position the cursor at it's beginning, according to the current mode."
@@ -114,7 +130,7 @@ Position the cursor at it's beginning, according to the current mode."
  '(line-number-mode nil)
  '(package-selected-packages
    (quote
-    (hlinum real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
+    (neotree company hlinum real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
