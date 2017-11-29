@@ -84,8 +84,7 @@
   :mode ("\\.html$" . web-mode)
   :config (progn
             (add-hook 'web-mode-hook
-                      (lambda ()
-                        (setq web-mode-markup-indent-offset 2)))
+                      (lambda () (setq web-mode-markup-indent-offset 2)))
             (add-hook 'web-mode-hook
                       (lambda ()
                         (setq cur-hili t)))))
@@ -109,13 +108,19 @@
 (use-package neotree
   :ensure t)
 
-(use-package fill-column-indicator
-  :ensure t
-  :config (progn
-            (add-hook 'web-mode-hook 'fci-mode)
-            (add-hook 'elisp-mode-hook 'fci-mode)
-            (add-hook 'python-mode-hook 'fci-mode)
-            (setq-default fill-column 80)))
+;; (use-package fill-column-indicator
+;;   :ensure t
+;;   :config (progn
+;;             (add-hook 'web-mode-hook 'fci-mode)
+;;             (add-hook 'emacs-lisp-mode-hook 'fci-mode)
+;;             (add-hook 'python-mode-hook 'fci-mode)
+;;             (add-hook 'js2-mode-hook 'fci-mode)
+;;             (setq-default fill-column 80)))
+
+(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+(global-whitespace-mode 1)
+;(add-hook 'prog-mode-hook 'whitespace-mode)
 
 (defun smart-open-line-above ()
   "Insert an empty line above the current line.
