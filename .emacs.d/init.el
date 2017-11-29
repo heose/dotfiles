@@ -1,8 +1,12 @@
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
+(add-to-list 'package-archives
+             '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 ;; use-package 설치
@@ -13,21 +17,20 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
-;; 맥일 경우 환경변수를 못 가져 오는 경우가 있어서 셋팅
 (use-package exec-path-from-shell
   :ensure t
-  :config (when (eq system-type 'darwin));;맥일경우
-	    (exec-path-from-shell-initialize))
+  :if (memq window-system '(mac ns x))
+  :config (exec-path-from-shell-initialize))
 
 (use-package helm
   :ensure t
   :bind (("M-x" . helm-M-x)
-  	 ("C-x b" . helm-buffers-list)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x f" . helm-recentf))
+         ("C-x b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-x f" . helm-recentf))
   :bind (:map helm-map
-  	      ("<tab>" . helm-execute-persistent-action)
-	      ("C-i" . helm-execute-persistent-action))
+              ("<tab>" . helm-excute-persistent-action)
+              ("C-i" . helm-execute-persistent-action))
   :config (helm-mode 1))
 
 (use-package magit
@@ -58,8 +61,6 @@
 (set-frame-font "SF Mono-16:light" t)
 ;한글일 경우 나눔고딕코딩 사용
 (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-;(set-face-attribute 'default nil :height 200)
-;(set-face-attribute 'default nil :weight "Light")
 
 (use-package dracula-theme
   :ensure t
@@ -69,18 +70,25 @@
   :ensure t
   :mode (("\\.js$" . js2-mode))
   :config (progn
-            (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
-            (add-hook 'js2-mode-hook (lambda () (setq js-switch-indent-offset 2)))))
+            (add-hook 'js2-mode-hook
+                      (lambda () (setq js2-basic-offset 2)))
+            (add-hook 'js2-mode-hook
+                      (lambda () (setq js-switch-indent-offset 2)))))
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 
+(defvaralias 'web-mode-enable-current-element-highlight 'cur-hili)
 (use-package web-mode
   :ensure t
   :mode ("\\.html$" . web-mode)
   :config (progn
-            (add-hook 'web-mode-hook (lambda () (setq web-mode-markup-indent-offset 2)))
-            (add-hook 'web-mode-hook (lambda () (setq web-mode-enable-current-element-highlight t)))))
+            (add-hook 'web-mode-hook
+                      (lambda ()
+                        (setq web-mode-markup-indent-offset 2)))
+            (add-hook 'web-mode-hook
+                      (lambda ()
+                        (setq cur-hili t)))))
 
 (use-package company
   :ensure t
@@ -91,12 +99,23 @@
             (setq company-minimum-prefix-length 1)
             (setq company-selection-wrap-around t)
             (setq company-tooltip-align-annotations t)
-            (define-key company-active-map (kbd "C-n") 'company-select-next)
-            (define-key company-active-map (kbd "C-p") 'company-select-previous)
-            (define-key company-active-map (kbd "C-d") 'company-show-doc-buffer)))
+            (define-key company-active-map
+              (kbd "C-n") 'company-select-next)
+            (define-key company-active-map
+              (kbd "C-p") 'company-select-previous)
+            (define-key company-active-map
+              (kbd "C-d") 'company-show-doc-buffer)))
 
 (use-package neotree
   :ensure t)
+
+(use-package fill-column-indicator
+  :ensure t
+  :config (progn
+            (add-hook 'web-mode-hook 'fci-mode)
+            (add-hook 'elisp-mode-hook 'fci-mode)
+            (add-hook 'python-mode-hook 'fci-mode)
+            (setq-default fill-column 80)))
 
 (defun smart-open-line-above ()
   "Insert an empty line above the current line.
@@ -116,21 +135,18 @@ Position the cursor at it's beginning, according to the current mode."
 ;; Set Auto save timeout
 (setq auto-save-timeout 2)
 
-(setq global-linum-mode t)
-(use-package hlinum
-  :ensure t
-  :config (hlinum-activate))
+(global-linum-mode t)
+(global-hl-line-mode t)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-linum-mode t)
- '(line-number-mode nil)
  '(package-selected-packages
    (quote
-    (neotree company hlinum real-auto-save web-mode js2-mode dracula-theme expand-region helm-descbinds exec-path-from-shell ag helm-ag helm-projectile use-package magit helm))))
+    (fill-column-indicator web-mode use-package real-auto-save neotree magit js2-mode hlinum helm-projectile helm-descbinds helm-ag expand-region exec-path-from-shell dracula-theme company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
