@@ -1,5 +1,5 @@
 ;; 에러시 디버그모드
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 (when window-system
   (menu-bar-mode -1)
@@ -151,19 +151,18 @@ Position the cursor at it's beginning, according to the current mode."
 
 (use-package company
   :ensure t
-  :init (global-company-mode)
-  :config (progn
-            (setq company-idle-delay 0.2)
-            (setq company-tooltip-limit 10)
-            (setq company-minimum-prefix-length 1)
-            (setq company-selection-wrap-around t)
-            (setq company-tooltip-align-annotations t)
-            (define-key company-active-map
-              (kbd "C-n") 'company-select-next)
-            (define-key company-active-map
-              (kbd "C-p") 'company-select-previous)
-            (define-key company-active-map
-              (kbd "C-d") 'company-show-doc-buffer)))
+  :diminish company-mode
+  :init
+  (add-hook 'prog-mode-hook 'company-mode)
+  :config
+  (setq company-idle-delay 0.1)
+  (setq company-tooltip-limit 20)
+  (setq company-dabbrev-downcase nil)
+  (setq company-minimum-prefix-length 2)
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 (use-package neotree
   :ensure t)
