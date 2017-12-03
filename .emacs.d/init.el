@@ -174,6 +174,15 @@ Position the cursor at it's beginning, according to the current mode."
   (setq aw-keys '(?1 ?2 ?3 ?4 ?5))
   :bind ("C-x o" . ace-window))
 
+(use-package avy
+  :ensure t
+  :bind
+  ("C-j j". avy-goto-word-1)
+  ("C-j C-j". avy-goto-word-1)
+  ("C-j k". avy-goto-char-2)
+  ("C-j g". avy-goto-line)
+  ("C-j C-g". avy-goto-line))
+
 (use-package ibuffer
   :ensure t
   :init
@@ -181,6 +190,9 @@ Position the cursor at it's beginning, according to the current mode."
   (autoload 'ibuffer "ibuffer" "List buffers." t))
 
 (use-package delight
+  :ensure t)
+
+(use-package smex
   :ensure t)
 
 ;;;; swiper and ivy
