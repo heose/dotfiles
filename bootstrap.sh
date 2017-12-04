@@ -10,7 +10,7 @@ brew bundle --file=$HOME/dotfiles/Brewfile
 brew cleanup
 brew cask cleanup
 
-yarn global tern
+yarn global add tern
 
 # git global config setting
 git config --global user.name heose
