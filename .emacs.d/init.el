@@ -157,7 +157,8 @@ Position the cursor at it's beginning, according to the current mode."
   (add-hook 'prog-mode-hook 'company-mode)
   :config
   (setq company-idle-delay 0.1)
-  (setq company-tooltip-limit 20)
+;  (setq company-show-numbers t)
+  (setq company-tooltip-limit 10)
   (setq company-dabbrev-downcase nil)
   (setq company-minimum-prefix-length 2)
   (define-key company-active-map (kbd "M-n") nil)
@@ -314,19 +315,22 @@ Position the cursor at it's beginning, according to the current mode."
   :config
   (beacon-mode 1))
 
-;; (use-package tern
-;;   :ensure t
-;;   :diminish tern-mode
-;;   :init
-;;   (autoload 'tern-mode' "tern.el" nil t)
-;;   (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-;;   :config
-;;   (define-key tern-mode-keymap (kbd "C-c C-r") nil)
-;;   ;; (define-key tern-mode-keymap (kbd "M-.") nil)
-;;   ;; (define-key tern-mode-keymap (kbd "M-,") nil)
-;;   (setq tern-command '("tern" "--no-port-file")))
+(use-package tern
+  :ensure t
+  :diminish tern-mode
+  :init
+  (autoload 'tern-mode' "tern.el" nil t)
+  (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+  :config
+  (define-key tern-mode-keymap (kbd "C-c C-r") nil)
+  ;; (define-key tern-mode-keymap (kbd "M-.") nil)
+  ;; (define-key tern-mode-keymap (kbd "M-,") nil)
+  (setq tern-command '("tern" "--no-port-file")))
 
-;; (use-package company-tern
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'company-backends 'company-tern))
+(use-package company-tern
+  :ensure t
+  :init
+  (setq company-tern-property-marker nil)
+  (setq company-tern-meta-as-single-line t)
+  (setq company-tooltip-align-annotations t)
+  (add-to-list 'company-backends 'company-tern))

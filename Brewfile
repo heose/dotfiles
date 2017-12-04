@@ -11,6 +11,8 @@ tap "caskroom/cask"
 brew "python3"
 brew "postgresql"
 brew "the_silver_searcher"
+brew "node"
+brew "yarn"
 
 #Applications
 cask "1password"
