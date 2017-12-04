@@ -11,6 +11,7 @@ brew cleanup
 brew cask cleanup
 
 yarn global add tern
+pip3 install flake8
 
 # git global config setting
 git config --global user.name heose
