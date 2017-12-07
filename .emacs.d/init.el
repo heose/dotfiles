@@ -21,18 +21,23 @@
 ;한글일 경우 나눔고딕코딩 사용
 (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
-(setq whitespace-line-column 80) ;; limit line length
+;; limit line length
+(setq whitespace-line-column 80) 
 (setq whitespace-style '(face lines-tail))
 (global-whitespace-mode 1)
 
-;; Disable file~
+;; 백업들 끄기
 (setq backup-inhibited t)
-;; Disable #file#
-(setq auto-save-visited-file-name t)
-;; Disable Interlocking
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 (setq create-lockfiles nil)
-;; Set Auto save timeout
-(setq auto-save-timeout 2)
+
+;; no popup frame(새버퍼열때 현재 프레임에서 열기)
+(setq ns-pop-up-frames nil)
+(setq pop-up-frames nil)
+
+;; 저장키 변경
+(define-key global-map (kbd "M-s") 'save-buffer)
 
 (global-linum-mode t)
 (global-hl-line-mode t)
@@ -52,6 +57,9 @@ Position the cursor at it's beginning, according to the current mode."
 
 ;; hippie-expand
 (global-set-key "\M-n" 'hippie-expand)
+
+(add-hook 'python-mode-hook
+  (lambda () (setq python-indent-offset 4)))
 
 (require 'package)
 (add-to-list 'package-archives
@@ -84,6 +92,20 @@ Position the cursor at it's beginning, according to the current mode."
   (setq dashboard-items '((recents  . 20)
                           (bookmarks . 10)
                           (projects . 10))))
+
+(use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode
+  :init
+  (global-undo-tree-mode)
+  :bind
+  ("C-z" . undo)
+  ("C-S-z" . undo-tree-redo))
+
+(use-package goto-last-change
+  :ensure t
+  :bind
+  ("C-j l" . goto-last-change))
 
 (use-package which-key
   :ensure t
@@ -286,6 +308,10 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure t
   :init
   (setq multi-term-program "/bin/zsh")
+  :config
+  (setq term-bind-key-alist
+        `(("C-n" . term-send-next)
+          ("C-p" . term-send-prior)))
   :bind
   ("C-c i" . multi-term))
 
@@ -333,3 +359,9 @@ Position the cursor at it's beginning, according to the current mode."
   (setq company-tern-meta-as-single-line t)
   (setq company-tooltip-align-annotations t)
   (add-to-list 'company-backends 'company-tern))
+
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (setq venv-location '("/Users/heose/Workspace/project-komachine/venv/")))
+
