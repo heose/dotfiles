@@ -97,7 +97,6 @@ source $ZSH/oh-my-zsh.sh
 source /usr/local/Bluemix/bx/zsh_autocomplete
 
 if [ -f $HOME/.exports ]; then
-  echo "Found .exports"
   source $HOME/.exports
 else
   echo "Not found .exports"

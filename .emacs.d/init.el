@@ -59,7 +59,10 @@ Position the cursor at it's beginning, according to the current mode."
 (global-set-key "\M-n" 'hippie-expand)
 
 (add-hook 'python-mode-hook
-  (lambda () (setq python-indent-offset 4)))
+          (lambda () (setq python-indent-offset 4)))
+
+(setenv "DJANGO_SETTINGS_MODULE" "web.settings.local")
+(setenv "LC_ALL" "C")
 
 (require 'package)
 (add-to-list 'package-archives
@@ -84,6 +87,7 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
+
 
 (use-package dashboard
   :ensure t
