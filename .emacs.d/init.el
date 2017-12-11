@@ -364,8 +364,28 @@ Position the cursor at it's beginning, according to the current mode."
   (setq company-tooltip-align-annotations t)
   (add-to-list 'company-backends 'company-tern))
 
+(use-package anaconda-mode
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+
+(use-package company-anaconda
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-anaconda))
+
 (use-package virtualenvwrapper
   :ensure t
   :config
   (setq venv-location '("/Users/heose/Workspace/project-komachine/venv/")))
+
+(use-package iedit
+  :ensure t)
+
+(add-to-list 'company-dabbrev-code-modes 'web-mode)
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (set (make-local-variable 'company-backends)
+;;                  '((company-anaconda company-dabbrev-code)))))
 
