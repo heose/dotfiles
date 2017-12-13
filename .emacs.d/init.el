@@ -188,6 +188,7 @@ Position the cursor at it's beginning, according to the current mode."
   (setq company-minimum-prefix-length 2)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-d") #'company-show-doc-buffer)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
