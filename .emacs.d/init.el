@@ -243,12 +243,13 @@ Position the cursor at it's beginning, according to the current mode."
    ("C-x C-f". counsel-find-file)
    ("C-c r". counsel-recentf)
    ("C-c g". counsel-projectile-rg)
+   ("C-c a". counsel-projectile-ag)
    ("C-c e". ivy-switch-buffer)
    ("C-c 4 e". ivy-switch-buffer-other-window)
    ("C-c o". counsel-imenu)
    ("C-c y" . counsel-yank-pop)
    ("C-x r l" . counsel-bookmark)
-   ("C-j i". swiper)
+   ("C-s". swiper)
    ("C-j o". swiper-all)
    :map ivy-mode-map
    ("S-SPC" . toggle-input-method)
@@ -383,7 +384,7 @@ Position the cursor at it's beginning, according to the current mode."
 (use-package iedit
   :ensure t)
 
-(add-to-list 'company-dabbrev-code-modes 'web-mode)
+;; (add-to-list 'company-dabbrev-code-modes 'web-mode)
 ;; (add-hook 'python-mode-hook
 ;;           (lambda ()
 ;;             (set (make-local-variable 'company-backends)
