@@ -391,3 +391,11 @@ Position the cursor at it's beginning, according to the current mode."
 ;;             (set (make-local-variable 'company-backends)
 ;;                  '((company-anaconda company-dabbrev-code)))))
 
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode)
+  (setq checkdoc-force-docstrings-flag nil)
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint))))
