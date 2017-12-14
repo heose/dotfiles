@@ -3,7 +3,7 @@
 if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
-
+cd ~/
 brew update
 brew tap homebrew/bundle
 brew bundle --file=$HOME/dotfiles/Brewfile
@@ -13,6 +13,11 @@ brew cask cleanup
 yarn global add tern
 pip3 install flake8
 pip3 install jedi
+npm install -g eslint
+npm init -y
+eslint --init
+
+
 
 # git global config setting
 git config --global user.name heose
