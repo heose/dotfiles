@@ -158,11 +158,11 @@ Position the cursor at it's beginning, according to the current mode."
 (use-package js2-mode
   :ensure t
   :mode (("\\.js$" . js2-mode))
-  :config (progn
-            (add-hook 'js2-mode-hook
-                      (lambda () (setq js2-basic-offset 2)))
-            (add-hook 'js2-mode-hook
-                      (lambda () (setq js-switch-indent-offset 2)))))
+  :config
+  (progn
+    (add-hook 'js-mode-hook (lambda () (setq mode-name "JS")))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
+    (add-hook 'js2-mode-hook (lambda () (setq js-switch-indent-offset 2)))))
 
 (defvaralias 'web-mode-enable-current-element-highlight 'cur-hili)
 (use-package web-mode
