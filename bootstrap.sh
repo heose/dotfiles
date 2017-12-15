@@ -3,7 +3,7 @@
 if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
-cd ~/
+
 brew update
 brew tap homebrew/bundle
 brew bundle --file=$HOME/dotfiles/Brewfile
@@ -14,10 +14,8 @@ yarn global add tern
 pip3 install flake8
 pip3 install jedi
 npm install -g eslint
-npm init -y
-eslint --init
-
-
+echo "You shoud initialize for eslint after this prbcess done."
+echo "eslint --init"
 
 # git global config setting
 git config --global user.name heose
@@ -38,11 +36,14 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   chsh -s $(which zsh)
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   ln -s $HOME/.dracula-theme/zsh/dracula.zsh-theme $HOME/.oh-my-zsh/themes/dracula.zsh-theme
-  [ ! -f $HOME/.zshrc ] && ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-  source $HOME/.zshrc
 else
   echo "Exist $HOME/.oh-my-zsh"
 fi
+if [ -f $HOME/.zshrc ]; then
+  rm $HOME/.zshrc
+fi
+ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+source $HOME/.zshrc
 
 #emacs
 if [ ! -d "$HOME/.emacs.d" ]; then
