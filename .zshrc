@@ -93,9 +93,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-### Added by the Bluemix CLI
-source /usr/local/Bluemix/bx/zsh_autocomplete
-
 if [ -f $HOME/.exports ]; then
   source $HOME/.exports
 else

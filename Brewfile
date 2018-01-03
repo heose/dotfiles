@@ -11,6 +11,7 @@ tap "caskroom/cask"
 brew "python3"
 brew "postgresql"
 brew "the_silver_searcher"
+brew "ripgrep"
 brew "node"
 brew "yarn"
 

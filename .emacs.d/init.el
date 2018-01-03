@@ -399,3 +399,6 @@ Position the cursor at it's beginning, according to the current mode."
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint))))
+
+(use-package yaml-mode
+  :ensure t)
