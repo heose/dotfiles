@@ -43,8 +43,8 @@
 (global-hl-line-mode t)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-   (when (file-exists-p custom-file)
-       (load custom-file))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (defun smart-open-line-above ()
   "Insert an empty line above the current line.
@@ -54,6 +54,17 @@ Position the cursor at it's beginning, according to the current mode."
   (newline-and-indent)
   (forward-line -1)
   (indent-according-to-mode))
+
+(defun generate-buffer ()
+  (interactive)
+  (switch-to-buffer (make-temp-name "scratch")))
+
+(defun set-django-template ()
+  (interactive)
+  (if (projectile-project-p)
+      (if (file-exists-p (concat (projectile-project-root) "manage.py"))
+          (web-mode-set-engine "django")
+        (message "do not exists"))))
 
 ;; hippie-expand
 (global-set-key "\M-n" 'hippie-expand)
@@ -171,6 +182,7 @@ Position the cursor at it's beginning, according to the current mode."
   :config (progn
             (add-hook 'web-mode-hook
                       (lambda () (setq web-mode-markup-indent-offset 2)))
+            (add-hook 'web-mode-hook 'set-django-template)
             (add-hook 'web-mode-hook
                       (lambda ()
                         (setq cur-hili t)))))
