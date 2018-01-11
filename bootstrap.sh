@@ -11,15 +11,19 @@ brew cleanup
 brew cask cleanup
 
 yarn global add tern
+# yarn global add eslint eslint-config-airbnb-base eslint-plugin-import
 pip3 install flake8
 pip3 install jedi
-npm install -g eslint
-echo "You shoud initialize for eslint after this prbcess done."
-echo "eslint --init"
 
 # git global config setting
 git config --global user.name heose
 git config --global user.email goddnrl@gmail.com
+
+# eslint
+# if [ ! -d "$HOME/.eslintrc.yml" ]; then
+#     rm $HOME/.eslintrc.yml
+# fi
+# ln -s $HOME/dotfiles/.eslintrc.yml $HOME/.eslintrc.yml
 
 # Download dracula theme
 if [ ! -d "$HOME/.dracula-theme" ]; then
@@ -31,7 +35,7 @@ else
   echo "Exist $HOME/.dracula-theme"
 fi
 
-#zsh
+# zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   chsh -s $(which zsh)
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -45,7 +49,7 @@ fi
 ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
-#emacs
+# emacs
 if [ ! -d "$HOME/.emacs.d" ]; then
   mkdir $HOME/.emacs.d
   ln -s $HOME/dotfiles/.emacs.d/init.el $HOME/.emacs.d/init.el

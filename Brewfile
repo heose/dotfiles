@@ -6,14 +6,7 @@ cask_args appdir: '/Applications'
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "caskroom/cask"
-
-#Binaries/Libraries
-brew "python3"
-brew "postgresql"
-brew "the_silver_searcher"
-brew "ripgrep"
-brew "node"
-brew "yarn"
+tap "caskroom/versions"
 
 #Applications
 cask "1password"
@@ -30,3 +23,12 @@ cask "karabiner-elements"
 cask "telegram"
 cask "transmission"
 cask "fliqlo"
+cask "java8"
+
+#Binaries/Libraries
+brew "python3"
+brew "postgresql"
+brew "ripgrep"
+brew "node"
+brew "yarn", "--without-node"
+brew "clojure"

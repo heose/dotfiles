@@ -99,6 +99,33 @@ Position the cursor at it's beginning, according to the current mode."
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
+(use-package ob-translate
+  :ensure t)
+
+(use-package org
+  :ensure org-plus-contrib
+  :config
+  (setq ob-translate:default-dest "ko")
+  (require 'ox-confluence))
+
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((js . t)
+     (emacs-lisp . t)
+     (clojure . t)
+     (plantuml . t)
+     (sh . t)
+     (translate . t)
+     (restclient . t)))
+
+(use-package org-bullets
+  :ensure t
+  :init
+  (setq org-bullets-face-name "my-org-face")
+  (setq org-bullets-bullet-list
+        '("◉" "◎" "⚫" "○" "►" "◇"))
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package dashboard
   :ensure t
