@@ -30,5 +30,5 @@ brew "python3"
 brew "postgresql"
 brew "ripgrep"
 brew "node"
-brew "yarn", "--without-node"
+brew "yarn", args: ["without-node"]
 brew "clojure"
