@@ -115,8 +115,7 @@ Position the cursor at it's beginning, according to the current mode."
      (clojure . t)
      (plantuml . t)
      (sh . t)
-     (translate . t)
-     (restclient . t)))
+     (translate . t)))
 
 (use-package org-bullets
   :ensure t
@@ -189,9 +188,9 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package dracula-theme
-  :ensure t
-  :config (load-theme 'dracula t))
+;; (use-package dracula-theme
+;;   :ensure t
+;;   :config (load-theme 'dracula t))
 
 (use-package js2-mode
   :ensure t
@@ -345,9 +344,7 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure t)
 
 (use-package counsel-projectile
-  :ensure t
-  :init
-  (counsel-projectile-on))
+  :ensure t)
 
 (use-package multi-term
   :ensure t
