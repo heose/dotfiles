@@ -189,8 +189,31 @@ Position the cursor at it's beginning, according to the current mode."
   :bind ("C-=" . er/expand-region))
 
 ;; (use-package dracula-theme
+;;   :disabled
 ;;   :ensure t
-;;   :config (load-theme 'dracula t))
+;;   :config
+;;   (load-theme 'dracula t))
+
+;; (use-package spacemacs-theme
+;;   :defer t
+;;   :init
+;;   (load-theme 'spacemacs-light t))
+
+(use-package github-modern-theme
+  :ensure t
+  :config
+  (load-theme 'github-modern t))
+
+;; (use-package flatui-theme
+;;   :disabled
+;;   :ensure t
+;;   :config
+;;   (load-theme 'flatui t))
+
+;; (use-package leuven-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'leuven t))
 
 (use-package js2-mode
   :ensure t
