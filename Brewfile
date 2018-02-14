@@ -24,6 +24,7 @@ cask "telegram"
 cask "transmission"
 cask "fliqlo"
 cask "java8"
+cask "slack"
 
 #Binaries/Libraries
 brew "python3"
