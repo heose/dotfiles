@@ -219,6 +219,8 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure t
   :mode (("\\.js$" . js2-mode))
   :config
+  (setq js2-strict-missing-semi-warning nil)
+  (setq js2-strict-trailing-comma-warning nil)
   (progn
     (add-hook 'js-mode-hook (lambda () (setq mode-name "JS")))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
@@ -444,12 +446,6 @@ Position the cursor at it's beginning, according to the current mode."
 (use-package iedit
   :ensure t)
 
-;; (add-to-list 'company-dabbrev-code-modes 'web-mode)
-;; (add-hook 'python-mode-hook
-;;           (lambda ()
-;;             (set (make-local-variable 'company-backends)
-;;                  '((company-anaconda company-dabbrev-code)))))
-
 (use-package flycheck
   :ensure t
   :init
@@ -458,6 +454,11 @@ Position the cursor at it's beginning, according to the current mode."
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint))))
+
+(eval-after-load 'js-mode
+  '(add-hook 'js-mode-hook #'add-node-modules-path))
+(add-to-list 'exec-path "~/Workspace/project_komachine/komachine-web/node_modules/.bin")
+
 
 (use-package yaml-mode
   :ensure t)
