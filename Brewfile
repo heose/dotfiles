@@ -3,33 +3,36 @@
 cask_args appdir: '/Applications'
 
 #Taps
-tap "homebrew/core"
 tap "homebrew/bundle"
-tap "caskroom/cask"
-tap "caskroom/versions"
-
-#Applications
-cask "1password"
-cask "alfred"
-cask "bettertouchtool"
-cask "emacs"
-cask "evernote"
-cask "firefox"
-cask "forklift"
-cask "google-chrome"
-cask "iterm2"
-cask "jetbrains-toolbox"
-cask "karabiner-elements"
-cask "telegram"
-cask "transmission"
-cask "fliqlo"
-cask "java8"
-cask "slack"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
 
 #Binaries/Libraries
-brew "python3"
-brew "postgresql"
-brew "ripgrep"
-brew "node"
+brew "gettext", link: true
+brew "nvm"
+brew "postgresql", restart_service: true
+brew "pyenv"
 brew "yarn", args: ["without-node"]
-brew "clojure"
+brew "zsh"
+
+#Applications
+cask "atom"
+cask "bettertouchtool"
+cask "calibre"
+cask "firefox"
+cask "font-fantasque-sans-mono"
+cask "font-fira-code"
+cask "font-monoid"
+cask "google-chrome"
+cask "hyper"
+cask "kindle-comic-converter"
+cask "kindlegen"
+cask "pycharm"
+cask "send-to-kindle"
+cask "transmission"
+cask "visual-studio-code"
+cask "webstorm"
+
+
